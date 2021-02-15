@@ -1,0 +1,10 @@
+#header {
+    background-color: navy;
+    height: 200px;
+    margin-bottom: -4px;
+}
+
+#add-line {
+    background-color: orangered;
+    height: 5px;
+}
