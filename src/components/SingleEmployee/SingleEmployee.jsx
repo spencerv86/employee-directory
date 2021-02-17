@@ -1,23 +1,23 @@
-import React, { Component } from "react";
+import React from "react";
+import Employees from "../Employees/Employees";
 
-class SingleEmployee extends Component {
-  render() {
-    return (
-      <tr>
-        <td>
-          <img
-            src="https://www.placecage.com/100/100"
-            alt="Nic Cage"
-            className="rounded"
-          />
-        </td>
-        <td>Nicolas Cage</td>
-        <td>(234) 234-2344</td>
-        <td>nic.cage@nictunes.com</td>
-        <td>02/20/1400</td>
-      </tr>
-    );
-  }
-}
+const SingleEmployee = ({ empList }) => {
+  console.log(empList);
+  return (
+    <tr key={empList.id.value}>
+      <td>
+        <img
+          src={empList.picture.thumbnail}
+          alt="Nic Cage"
+          className="rounded"
+        />
+      </td>
+      <td>{empList.name.first + " " + empList.name.last}</td>
+      <td>{empList.cell}</td>
+      <td>{empList.email}</td>
+      <td>{empList.dob.date.substring(0, 10)}</td>
+    </tr>
+  );
+};
 
 export default SingleEmployee;

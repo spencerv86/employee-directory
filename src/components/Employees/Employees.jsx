@@ -1,46 +1,58 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import "../../styles/Employees.css";
+import API from "../../utils/API";
+import SearchBar from "../SearchBar/SearchBar";
 import SingleEmployee from "../SingleEmployee/SingleEmployee";
 class Employees extends Component {
-    render() {
-        return (
-            <div className="container">
-                <table className="table table-striped table-dark">
-                    <thead>
-                        <tr>
-                            <th scope="col">Image</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">DOB</th>
-                        </tr>
-                    </thead>
-                    <tbody  className="align-items-center">
-                        <SingleEmployee />
-                        <tr>
-                            <td><img src="https://www.placecage.com/100/100"alt="Nic Cage" className="rounded"/></td>
-                            <td>Nicolas Cage</td>
-                            <td>(234) 234-2344</td>
-                            <td>nic.cage@nictunes.com</td>
-                            <td>02/20/1400</td>
-                        </tr><tr>
-                            <td><img src="https://www.placecage.com/100/100"alt="Nic Cage" className="rounded"/></td>
-                            <td>Nicolas Cage</td>
-                            <td>(234) 234-2344</td>
-                            <td>nic.cage@nictunes.com</td>
-                            <td>02/20/1400</td>
-                        </tr><tr>
-                            <td><img src="https://www.placecage.com/100/100"alt="Nic Cage" className="rounded"/></td>
-                            <td>Nicolas Cage</td>
-                            <td>(234) 234-2344</td>
-                            <td>nic.cage@nictunes.com</td>
-                            <td>02/20/1400</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        );
-    }
+  state = {
+    employees: [],
+    filteredEmployees: [],
+    filter: ""
+  };
+
+  componentDidMount() {
+    this.loadEmployees();
+  }
+
+  loadEmployees = () => {
+    API.getEmployees()
+      .then((res) => this.setState({ employees: res.data.results }))
+      .catch((err) => {
+        if (err) throw err;
+      });
+  };
+
+  handleInputChange= (e) => {
+      this.setState({filter: e.target.value})
+  }
+
+  render() {
+    return (
+      <div>
+        <SearchBar/>
+        <div className="container">
+          <table className="table table-striped table-dark">
+            <thead>
+              <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Email</th>
+                <th scope="col">DOB</th>
+              </tr>
+            </thead>
+            <tbody className="align-items-center">
+                {this.state.employees.map((employee) => {
+                    return (
+                        <SingleEmployee empList={employee} />
+                    )
+                })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Employees;
