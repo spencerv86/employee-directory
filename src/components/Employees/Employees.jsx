@@ -3,11 +3,13 @@ import "../../styles/Employees.css";
 import API from "../../utils/API";
 import SearchBar from "../SearchBar/SearchBar";
 import SingleEmployee from "../SingleEmployee/SingleEmployee";
+import Tablehead from "../Tablehead/Tablehead";
 class Employees extends Component {
   state = {
     employees: [],
     filteredEmployees: [],
-    filter: ""
+    filter: "",
+    sortMethod: "asc"
   };
 
   componentDidMount() {
@@ -24,6 +26,12 @@ class Employees extends Component {
 
   handleInputChange= (e) => {
       this.setState({filter: e.target.value})
+  };
+
+  handleBtnClick = (e) => {
+    this.setState({employees: this.state.employees.sort(function(a, b) {
+        return a.email - b.value;
+    })})
   }
 
   render() {
@@ -32,15 +40,7 @@ class Employees extends Component {
         <SearchBar/>
         <div className="container">
           <table className="table table-striped table-dark">
-            <thead>
-              <tr>
-                <th scope="col">Image</th>
-                <th scope="col">Name</th>
-                <th scope="col">Phone</th>
-                <th scope="col">Email</th>
-                <th scope="col">DOB</th>
-              </tr>
-            </thead>
+            <Tablehead handleBtnClick={this.handleBtnClick}/>
             <tbody className="align-items-center">
                 {this.state.employees.map((employee) => {
                     return (
