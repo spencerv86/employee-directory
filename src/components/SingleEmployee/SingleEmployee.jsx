@@ -2,13 +2,13 @@ import React from "react";
 import Employees from "../Employees/Employees";
 
 const SingleEmployee = ({ empList }) => {
-  console.log(empList);
+  // console.log(empList);
   return (
     <tr key={empList.id.value}>
       <td>
         <img
           src={empList.picture.thumbnail}
-          alt="Nic Cage"
+          alt={empList.name.first}
           className="rounded"
         />
       </td>
