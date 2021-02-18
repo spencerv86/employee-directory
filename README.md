@@ -1,55 +1,68 @@
-# Unit 19 React Homework: Employee Directory
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# Fitness Tracking App
 
-## Overview
+## Description
 
-For this assignment, you'll create a employee directory with React. This assignment will require you to break up your application's UI into components, manage component state, and respond to user events.
+ The Employee Directory is a simple site that allows a user to intuitively search and sort through their employee records by name, DOB, email and phone number.
+ This app was built using **React.js** with a focus on using class components instead of functional components, with **Bootstrap**, **Axios** and the **RandomUser.me** API to fill the data.
 
-## User Story
 
-* As a user, I want to be able to view my entire employee directory at once so that I have quick access to their information.
 
-## Business Context
+---------------------------
 
-An employee or manager would benefit greatly from being able to view non-sensitive data about other employees. It would be particularly helpful to be able to filter employees by name.
+The deployed and functional site on Heroku can be found here: <https://spencerv86.github.io/employee-directory/>
 
-## Acceptance Criteria
+The full process can be found on [my Github](https://github.com/spencerv86/) repository linked here:
+<https://github.com/spencerv86/employee-directory>
 
-Given a table of random users generated from the [Random User API](https://randomuser.me/), when the user loads the page, a table of employees should render. 
 
-The user should be able to:
+---------------------------
 
-  * Sort the table by at least one category
+## Table of Contents
 
-  * Filter the users by at least one property.
+* [Installation](#installation)
+* [Usage](#usage)
+* [Credits](#credits)
+* [License](#license)
 
-## Commit Early and Often
 
-One of the most important skills to master as a web developer is version control. Building the habit of committing via Git is important for two reasons:
+## Installation
 
-1. Your commit history is a signal to employers that you are actively working on projects and learning new skills
+If you would like to inspect the code, please begin by forking the repository and downloading to your computer. Make sure that you have node already installed. 
+You will likely need to run 
+```npm install``` but no other files should be necessary. If you would like to run the app locally, you can run ```npm start``` to do so.
 
-2. Your commit history allows you to revert your code base in the event that you need to return to a previous state
+If you would simply like to see the app in action, no installation is needed, just click the following link: <https://spencerv86.github.io/employee-directory/>
 
-Follow these guidelines for committing:
+## Usage
 
-* Make single purpose commits for related changes to ensure a clean, manageable history. If you are fixing two issues, make two commits
+On site load, the page will populate with 75 random "employees" in a random order. Each employee row displays their thumbnail, name, phone number, email address and date of birth. To sort these employees you can click any of the up/down carets and the table will reload, toggling between ascending/descending sorts. To search for an employee by name, you can simply start typing into the search bar. Please keep in mind that this will search for any part of the employee's name, instead of only the exact matches.
 
-* Write descriptive, meaningful commit messages so that you and anyone else looking at your repository can easily understand its history
+![App in action](./public/employee-directory.gif)
 
-* Don't commit half done work, for the sake of your collaborators (and your future self!)
+## Credits
+Thanks to the helpful members of my group and cohort at large, as well as the instructional staff!
 
-* Test your application before you commit to ensure functionality at every step in the development process
+## License
 
-* We would like you to have well over 200 commits by graduation, so commit early and often!
+MIT License
 
-* Deploy this site to GitHub Pages using the [Create React App docs for deployment.](https://create-react-app.dev/docs/deployment/#github-pages)
+Copyright (c) 2021 Spencer Vaughan
 
-* **Important**: Be sure to push your codebase to GitHub and **NOT** your built and deployed code. Ensure this happens by following the above instructions and using the `gh-pages` branch to host the deployed application's code.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-## Submission on BCS
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-You are required to submit the following:
-
-* the URL to the deployed application
-
-* the URL to the Github repository
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
