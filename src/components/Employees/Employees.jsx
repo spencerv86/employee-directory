@@ -7,9 +7,7 @@ import Tablehead from "../Tablehead/Tablehead";
 class Employees extends Component {
   state = {
     employees: [],
-    filteredEmployees: [],
-    // filter: "",
-    sortMethod: "asc"
+    filteredEmployees: []
   };
 
   componentDidMount() {
@@ -41,11 +39,16 @@ class Employees extends Component {
   };
 
   handleBtnClick = (e) => {
-    this.setState({
-      employees: this.state.employees.sort(function (a, b) {
-        return a.email - b.value;
-      }),
-    });
+    this.setState({ sort: !this.state.sort });
+    const compare = (a,b) => {
+        if (this.state.sort) {
+            return b.name.last.localeCompare(a.name.last);
+        } else {
+            return a.name.last.localeCompare(b.name.last);
+        }
+    };
+    const sorted = this.state.employees.sort(compare);
+    this.setState({ filteredEmployees: sorted });
   };
 
   render() {
@@ -54,7 +57,6 @@ class Employees extends Component {
         <SearchBar
           value={this.state.searchFor}
           onChange={this.handleInputChange}
-          name="searchFor"
         />
         <div className="container">
           <table className="table table-striped table-dark">
