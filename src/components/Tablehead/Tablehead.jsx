@@ -6,7 +6,7 @@ const Tablehead = (props) => {
       <tr>
         <th scope="col">Image</th>
         <th scope="col">
-          Name<i class="fa fa-fw fa-sort" onClick={props.handleBtnClick}></i>
+          Name<i className="fa fa-fw fa-sort" onClick={props.handleBtnClick}></i>
         </th>
         <th scope="col">Phone</th>
         <th scope="col">Email</th>
