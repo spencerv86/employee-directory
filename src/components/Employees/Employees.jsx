@@ -7,7 +7,7 @@ import Tablehead from "../Tablehead/Tablehead";
 class Employees extends Component {
   state = {
     employees: [],
-    filteredEmployees: []
+    filteredEmployees: [],
   };
 
   componentDidMount() {
@@ -30,24 +30,46 @@ class Employees extends Component {
   handleInputChange = (e) => {
     const searchFor = e.target.value;
     const retrieved = this.state.employees.filter((employee) => {
-      return employee.name.first
+      return employee.email
         .toLowerCase()
         .includes(searchFor.toLowerCase());
     });
-    console.log(retrieved);
     this.setState({ filteredEmployees: retrieved });
   };
 
   handleBtnClick = (e) => {
     this.setState({ sort: !this.state.sort });
-    const compare = (a,b) => {
-        if (this.state.sort) {
-            return b.name.last.localeCompare(a.name.last);
-        } else {
-            return a.name.last.localeCompare(b.name.last);
-        }
+    console.log(e.currentTarget.id);
+    let id = e.currentTarget.id;
+    const sortMeth = (a, b) => {
+      switch (id) {
+        case "name":
+          if (this.state.sort) {
+            return b.name.first.localeCompare(a.name.first);
+          } else {
+            return a.name.first.localeCompare(b.name.first);
+          }
+        case "phone":
+          if (this.state.sort) {
+            return b.cell.localeCompare(a.cell);
+          } else {
+            return a.cell.localeCompare(b.cell);
+          }
+        case "email":
+          if (this.state.sort) {
+            return b.email.localeCompare(a.email);
+          } else {
+            return a.email.localeCompare(b.email);
+          }
+        case "DOB":
+          if (this.state.sort) {
+            return b.dob.date.localeCompare(a.dob.date);
+          } else {
+            return a.dob.date.localeCompare(b.dob.date);
+          }
+      }
     };
-    const sorted = this.state.employees.sort(compare);
+    const sorted = this.state.employees.sort(sortMeth);
     this.setState({ filteredEmployees: sorted });
   };
 
