@@ -8,7 +8,7 @@ class Employees extends Component {
   state = {
     employees: [],
     filteredEmployees: [],
-    filter: "",
+    // filter: "",
     sortMethod: "asc"
   };
 
@@ -18,35 +18,53 @@ class Employees extends Component {
 
   loadEmployees = () => {
     API.getEmployees()
-      .then((res) => this.setState({ employees: res.data.results }))
+      .then((res) =>
+        this.setState({
+          employees: res.data.results,
+          filteredEmployees: res.data.results,
+        })
+      )
       .catch((err) => {
         if (err) throw err;
       });
   };
 
-  handleInputChange= (e) => {
-      this.setState({filter: e.target.value})
+  handleInputChange = (e) => {
+    const searchFor = e.target.value;
+    const retrieved = this.state.employees.filter((employee) => {
+      return employee.name.first
+        .toLowerCase()
+        .includes(searchFor.toLowerCase());
+    });
+    console.log(retrieved);
+    this.setState({ filteredEmployees: retrieved });
   };
 
   handleBtnClick = (e) => {
-    this.setState({employees: this.state.employees.sort(function(a, b) {
+    this.setState({
+      employees: this.state.employees.sort(function (a, b) {
         return a.email - b.value;
-    })})
-  }
+      }),
+    });
+  };
 
   render() {
     return (
       <div>
-        <SearchBar/>
+        <SearchBar
+          value={this.state.searchFor}
+          onChange={this.handleInputChange}
+          name="searchFor"
+        />
         <div className="container">
           <table className="table table-striped table-dark">
-            <Tablehead handleBtnClick={this.handleBtnClick}/>
+            <Tablehead handleBtnClick={this.handleBtnClick} />
             <tbody className="align-items-center">
-                {this.state.employees.map((employee) => {
-                    return (
-                        <SingleEmployee empList={employee} />
-                    )
-                })}
+              {this.state.filteredEmployees.map((employee) => {
+                return (
+                  <SingleEmployee empList={employee} key={employee.id.value} />
+                );
+              })}
             </tbody>
           </table>
         </div>
